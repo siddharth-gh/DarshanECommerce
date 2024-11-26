@@ -4,6 +4,7 @@ import styles from './Login.module.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom'
+import { url } from '../assets'
 
 export default function Login(props) {
     const emailRef = useRef(null);

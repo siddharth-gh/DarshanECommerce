@@ -18,7 +18,6 @@ export default function Login(props) {
     const handleSignup = async (event) => {
         event.preventDefault();
 
-        // if (passRef.current.value === confPassRef.current.value) {
         try {
             const response = await fetch(`${url}/api/auth/createuser`, {
                 method: 'POST',
