@@ -37,7 +37,7 @@ export default function ProductPage(props) {
     const relatedProducts = getCategoryRecommendations();
 
     return (
-        <div className={styles.ProductPage}>
+        <div className={`${styles.ProductPage} ${props.theme === 'light' ? styles.light : styles.dark}`}>
             <div className={styles.main}>
                 <div className={styles.images}>
                     <img src={`/${product.productImage}`} alt={product.title} />

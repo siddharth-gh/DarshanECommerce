@@ -6,9 +6,9 @@
     align-items: center;
     justify-content: flex-start;
     padding-top: 10vh;
+    transition: all 1s ease-in-out;
 
     .main {
-        background-color: aliceblue;
         width: 80vw;
         height: 80vh;
         display: flex;
@@ -24,6 +24,7 @@
                 height: auto;
                 border-radius: 8px;
                 width: 331px;
+                border: 2px solid white;
             }
         }
 
@@ -65,7 +66,6 @@
     .reviews {
         width: 80vw;
         padding: 20px;
-        background-color: #f7f7f7;
         border-radius: 8px;
         margin-bottom: 30px;
 
@@ -76,11 +76,11 @@
         }
 
         .review {
-            background-color: white;
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid white;
 
             p {
                 margin: 5px 0;
@@ -91,7 +91,6 @@
     .recommendations {
         width: 80vw;
         padding: 20px;
-        background-color: #f7f7f7;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
@@ -111,10 +110,11 @@
             .relatedProduct {
                 width: 20%;
                 padding: 10px;
-                background-color: white;
                 border-radius: 5px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 text-align: center;
+                border: 1px solid white;
+                object-fit: fill;
 
                 img {
                     width: 100%;
@@ -128,4 +128,46 @@
             }
         }
     }
+}
+
+// .dark {
+//     background-color: black;
+//     color: white;
+
+//     main {
+//         background-color: black !important;
+//         color: white;
+//     }
+
+//     .reviews {
+//         background-color: black !important;
+//         color: white;
+//     }
+
+//     .recommendations {
+//         background-color: black !important;
+//         color: white;
+//     }
+// }
+
+.dark {
+    background-color: black;
+    color: white;
+}
+
+.light {
+    background-color: aliceblue;
+    color: black;
+}
+
+.dark>* {
+    background-color: black;
+    color: white;
+    transition: all 1s ease-in-out;
+}
+
+.light>* {
+    background-color: aliceblue;
+    color: black;
+    transition: all 1s ease-in-out;
 }

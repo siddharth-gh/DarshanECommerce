@@ -91,7 +91,7 @@ function App() {
           <Route path="/" element={<Home toggleCart={toggleCart} setCartCount={setCartCount} cartVisibility={cartVisibility} theme={theme} addToCart={addToCart} cartItems={cartItems} setCartItems={setCartItems} />}></Route>
           <Route path="/searchResults" element={<SearchResults addToCart={addToCart} />} />
           <Route path="/checkoutpage" element={<CheckoutPage cartItems={cartItems} clearCart={clearCart} />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard theme={theme} />} />
 
         </Routes>
         <Footer />

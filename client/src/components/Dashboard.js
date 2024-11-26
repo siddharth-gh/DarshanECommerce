@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from './Dashboard.module.scss';
 import { url } from '../assets'
 
-export default function Dashboard() {
+export default function Dashboard(props) {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -57,7 +57,7 @@ export default function Dashboard() {
     }
 
     return (
-        <div className={styles.Dashboard}>
+        <div className={`${styles.Dashboard} ${props.theme === 'light' ? styles.light : styles.dark}`}>
             <h2>Admin Dashboard</h2>
             {orders.length === 0 ? (
                 <p>No orders placed yet.</p>
