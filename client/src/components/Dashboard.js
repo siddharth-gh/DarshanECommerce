@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './Dashboard.module.scss';
+import { url } from '../assets'
 
 export default function Dashboard() {
     const [orders, setOrders] = useState([]);
@@ -11,7 +12,9 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/order/orders');
+                // const response = await fetch(`${url}/api/auth/login`, {
+
+                const response = await fetch(`${url}/api/order/orders`);
                 const data = await response.json();
                 console.log(data);  // Log to check if the data is correct
 
@@ -29,7 +32,7 @@ export default function Dashboard() {
 
     const handleOrderStatusChange = async (orderId, newStatus) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/order/orders/${orderId}`, {
+            const response = await fetch(`${url}/api/order/orders/${orderId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

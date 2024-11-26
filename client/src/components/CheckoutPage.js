@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';  // Import ToastContainer and toast
 import 'react-toastify/dist/ReactToastify.css';  // Import the default styles for Toastify
 import styles from './CheckoutPage.module.scss';
+import { url } from "../assets"
 
 export default function CheckoutPage({ cartItems }) {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function CheckoutPage({ cartItems }) {
 
         try {
             // Make API call to create a new order
-            const response = await fetch('http://localhost:5000/api/order/newOrder', {
+            const response = await fetch(`${url}/api/order/newOrder`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
