@@ -1,2 +1,2 @@
 // export const url = "https://notes-me-omega.vercel.app"
-export const url = "http://localhost:5000"
+export const url = "https://darshan-e-commerce.vercel.app"
