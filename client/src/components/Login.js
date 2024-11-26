@@ -9,7 +9,6 @@ export default function Login(props) {
     const emailRef = useRef(null);
     const passRef = useRef(null);
     const navigate = useNavigate();
-    const url = "http://localhost:5000";
 
     const handleLogin = async (event) => {
         event.preventDefault();
