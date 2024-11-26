@@ -8,17 +8,13 @@ export default function Dashboard() {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Fetch all orders when component mounts
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                // const response = await fetch(`${url}/api/auth/login`, {
 
                 const response = await fetch(`${url}/api/order/orders`);
                 const data = await response.json();
-                console.log(data);  // Log to check if the data is correct
 
-                // Ensure the backend response has the proper structure
                 setOrders(data);
             } catch (error) {
                 toast.error('Failed to fetch orders: ' + error.message);
@@ -44,10 +40,8 @@ export default function Dashboard() {
                 throw new Error('Failed to update order status');
             }
 
-            // Show success toast
             toast.success(`Order ${orderId} marked as ${newStatus}`);
 
-            // Refresh the orders list by updating the state
             const updatedOrders = orders.map(order =>
                 order._id === orderId ? { ...order, status: newStatus } : order
             );

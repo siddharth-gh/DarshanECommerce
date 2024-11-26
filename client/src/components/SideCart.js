@@ -6,23 +6,21 @@ import { useNavigate } from 'react-router-dom';
 export default function SideCart({ cartItems, removeFromCart, toggleCart }) {
     const navigate = useNavigate();
 
-    // Calculate the total price, GST, and discounts
     const calculateTotalPrice = () => {
         let total = 0;
         cartItems.forEach(item => {
-            total += parseFloat(item.price.replace('$', '')); // Assuming price is a string like "$100"
+            total += parseFloat(item.price.replace('$', ''));
         });
         return total;
     };
 
     const totalPrice = calculateTotalPrice();
-    const gst = totalPrice * 0.18;  // Assuming 18% GST
-    const discount = totalPrice * 0.1; // Example discount of 10%
-    const finalTotal = totalPrice + gst - discount; // Final price after GST and discount
+    const gst = totalPrice * 0.18;
+    const discount = totalPrice * 0.1;
+    const finalTotal = totalPrice + gst - discount;
 
-    // Handle checkout button click
     const handleCheckoutClick = () => {
-        navigate('/checkoutpage'); // Navigate to the checkout page
+        navigate('/checkoutpage');
     };
 
     return (
@@ -37,7 +35,7 @@ export default function SideCart({ cartItems, removeFromCart, toggleCart }) {
             <h2>Cart</h2>
             {cartItems.length === 0 ? (
                 <div className={styles.empty}>
-                    <img src="emptyCart.png" alt="Empty cart" />
+                    <img src="/emptyCart.png" alt="Empty cart" />
                     <p>Your cart is empty.</p>
                 </div>
             ) : (
@@ -48,7 +46,7 @@ export default function SideCart({ cartItems, removeFromCart, toggleCart }) {
                             style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}
                         >
                             <img
-                                src={item.productImage}
+                                src={`/${item.productImage}`}
                                 alt={item.title}
                                 style={{
                                     width: '70px',
@@ -77,7 +75,6 @@ export default function SideCart({ cartItems, removeFromCart, toggleCart }) {
                 </ul>
             )}
 
-            {/* Display Total Price, GST, Discount, and Final Total */}
             {cartItems.length === 0 ? (
                 <p></p>
             ) : (
@@ -88,7 +85,6 @@ export default function SideCart({ cartItems, removeFromCart, toggleCart }) {
                         <p><strong>Discount (10%):</strong> -${discount.toFixed(2)}</p>
                         <p><strong>Final Total:</strong> ${finalTotal.toFixed(2)}</p>
                     </div>
-                    {/* Checkout Button */}
                     <button className={styles.checkoutButton} onClick={handleCheckoutClick}>
                         Checkout
                     </button>

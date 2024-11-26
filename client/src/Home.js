@@ -13,17 +13,8 @@ import styles from './Home.module.scss'
 export default function Home(props) {
 
 
-    const removeFromCart = (productId) => {
-        props.setCartItems((prevItems) => {
-            const updatedItems = prevItems.filter(item => item.id !== productId);
-            return updatedItems;
-        });
-        props.setCartCount(props.cartItems.length - 1);
-    };
-
     return (
         <div className={styles.Home}>
-            {props.cartVisibility && <SideCart cartItems={props.cartItems} removeFromCart={removeFromCart} toggleCart={props.toggleCart} />}
             <Slider />
             <Categories />
 
@@ -40,7 +31,6 @@ export default function Home(props) {
 
             </Routes>
 
-            <Footer />
         </div>
     );
 }

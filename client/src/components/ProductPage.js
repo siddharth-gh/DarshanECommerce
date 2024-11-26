@@ -2,21 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import styles from './ProductPage.module.scss';
-import products from './sampleProducts.json'; // Import the JSON data
+import products from './sampleProducts.json';
 
 export default function ProductPage(props) {
-    const { id } = useParams(); // Get the product ID from the URL
+    const { id } = useParams();
     const [product, setProduct] = useState(null);
 
-    // Fetch product details based on ID from the URL
     useEffect(() => {
         const selectedProduct = products.find(product => product.id === parseInt(id));
         setProduct(selectedProduct);
     }, [id]);
 
-    if (!product) return <div>Loading...</div>; // Handle loading state if product is not found
+    if (!product) return <div>Loading...</div>;
 
-    // Generate some random reviews
     const generateRandomReviews = () => {
         const reviews = [
             { user: 'John Doe', rating: 5, text: 'Excellent product! Highly recommend.' },
@@ -30,11 +28,10 @@ export default function ProductPage(props) {
 
     const randomReviews = generateRandomReviews();
 
-    // Get recommendations from the same category as the current product
     const getCategoryRecommendations = () => {
-        const category = product.category; // Current product's category
-        const relatedProducts = products.filter(p => p.category === category && p.id !== parseInt(id)); // Filter by category
-        return relatedProducts.sort(() => 0.5 - Math.random()).slice(0, 4); // Get 4 random products from the same category
+        const category = product.category;
+        const relatedProducts = products.filter(p => p.category === category && p.id !== parseInt(id));
+        return relatedProducts.sort(() => 0.5 - Math.random()).slice(0, 4);
     };
 
     const relatedProducts = getCategoryRecommendations();
@@ -43,7 +40,7 @@ export default function ProductPage(props) {
         <div className={styles.ProductPage}>
             <div className={styles.main}>
                 <div className={styles.images}>
-                    <img src={product.productImage} alt={product.title} />
+                    <img src={`/${product.productImage}`} alt={product.title} />
                 </div>
                 <div className={styles.info}>
                     <h3>{product.title}</h3>
@@ -74,7 +71,7 @@ export default function ProductPage(props) {
                 <div className={styles.relatedProducts}>
                     {relatedProducts.map(product => (
                         <div key={product.id} className={styles.relatedProduct}>
-                            <img src={product.productImage} alt={product.title} />
+                            <img src={`/${product.productImage}`} alt={product.title} />
                             <p>{product.title}</p>
                             <p>{product.price}</p>
                         </div>

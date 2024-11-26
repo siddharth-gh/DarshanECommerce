@@ -17,7 +17,7 @@ export default function Login(props) {
             const response = await fetch(`${url}/api/auth/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'  // Specify the content type
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     email: emailRef.current.value.toLowerCase(),
@@ -32,26 +32,21 @@ export default function Login(props) {
                 return;
             }
 
-            // Store token and name in local storage
             localStorage.setItem('token', user.token);
             localStorage.setItem('name', user.name);
-            localStorage.setItem('role', user.role); // Store the role as well
+            localStorage.setItem('role', user.role);
 
             toast.success("Success, logging you in...", { autoClose: 100 });
 
-            // Set the user's name in the parent component
             props.setName(user.name);
 
-            // Check role and navigate accordingly
             if (user.role === 'admin') {
-                // Navigate to the admin dashboard if role is admin
                 setTimeout(() => {
-                    navigate('/dashboard'); // Assuming your admin dashboard route is '/admin-dashboard'
+                    navigate('/dashboard');
                 }, 3000);
             } else {
-                // Navigate to the home page if role is user
                 setTimeout(() => {
-                    navigate('/'); // Assuming home route is '/'
+                    navigate('/');
                 }, 3000);
             }
         }

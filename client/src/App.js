@@ -19,6 +19,8 @@ import Navbar from './components/Navbar';
 import SearchResults from './components/SearchResults';
 import CheckoutPage from './components/CheckoutPage';
 import Dashboard from './components/Dashboard';
+import Footer from './components/Footer';
+import SideCart from './components/SideCart';
 
 function App() {
 
@@ -32,7 +34,7 @@ function App() {
 
   const [name, setName] = useState("");
 
-  const [theme, setTheme] = useState();
+  const [theme, setTheme] = useState("light");
 
 
   const toggleTheme = () => {
@@ -59,26 +61,37 @@ function App() {
     setCartItems([]);  // Clear the cart by resetting the cartItems state
   };
 
+  const removeFromCart = (productId) => {
+    setCartItems((prevItems) => {
+      const updatedItems = prevItems.filter(item => item.id !== productId);
+      return updatedItems;
+    });
+    setCartCount(cartItems.length - 1);
+  };
+
 
   return (
     <>
       <Router>
         <Navbar toggleCart={toggleCart} cartCount={cartCount} name={name} setName={setName} toggleTheme={toggleTheme} theme={theme} />
+        {cartVisibility && <SideCart cartItems={cartItems} toggleCart={toggleCart} removeFromCart={removeFromCart} />}
+
         <Routes>
           <Route path="/login" element={<Login setName={setName} />}></Route>
           <Route path="/signup" element={<Signup setName={setName} />}></Route>
-          <Route path="/product/:id" element={<ProductPage theme={theme} />} /> {/* Route for individual product */}
-          <Route path="/electronics" element={<Electronics theme={theme} />} />
-          <Route path="/HomeAppliances" element={<HomeAppliances theme={theme} />} />
-          <Route path="/fashion" element={<Fashion theme={theme} />} />
-          <Route path="/gaming" element={<Gaming theme={theme} />} />
-          <Route path="/books" element={<Books theme={theme} />} />
+          <Route path="/product/:id" element={<ProductPage theme={theme} addToCart={addToCart} />} />
+          <Route path="/electronics" element={<Electronics theme={theme} addToCart={addToCart} />} />
+          <Route path="/HomeAppliances" element={<HomeAppliances theme={theme} addToCart={addToCart} />} />
+          <Route path="/fashion" element={<Fashion theme={theme} addToCart={addToCart} />} />
+          <Route path="/gaming" element={<Gaming theme={theme} addToCart={addToCart} />} />
+          <Route path="/books" element={<Books theme={theme} addToCart={addToCart} />} />
           <Route path="/" element={<Home toggleCart={toggleCart} setCartCount={setCartCount} cartVisibility={cartVisibility} theme={theme} addToCart={addToCart} cartItems={cartItems} setCartItems={setCartItems} />}></Route>
-          <Route path="/searchResults" element={<SearchResults />} />
+          <Route path="/searchResults" element={<SearchResults addToCart={addToCart} />} />
           <Route path="/checkoutpage" element={<CheckoutPage cartItems={cartItems} clearCart={clearCart} />} />
           <Route path="/dashboard" element={<Dashboard />} />
 
         </Routes>
+        <Footer />
       </Router>
     </>
   );

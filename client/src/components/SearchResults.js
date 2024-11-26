@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import styles from './ProductList.module.scss';
 import { useLocation } from 'react-router-dom';
-import products from './sampleProducts.json'; // Import the product data
-
+import products from './sampleProducts.json';
 export default function SearchResults(props) {
     const location = useLocation();
-    const query = new URLSearchParams(location.search).get('q'); // Extract the search query from the URL
+    const query = new URLSearchParams(location.search).get('q');
     const [filteredProducts, setFilteredProducts] = useState([]);
 
-    // Filter products based on the search query
     useEffect(() => {
         if (query) {
             const results = products.filter((product) =>

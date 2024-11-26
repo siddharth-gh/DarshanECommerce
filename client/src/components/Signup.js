@@ -22,7 +22,7 @@ export default function Login(props) {
             const response = await fetch(`${url}/api/auth/createuser`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'  // Specify the content type
+                    'Content-Type': 'application/json' 
                 },
                 body: JSON.stringify({
                     name: nameRef.current.value,
@@ -50,10 +50,7 @@ export default function Login(props) {
         catch (error) {
             toast.error("Error signing up")
         }
-        // }
-        // else {
-        //     toast.error("Passwords don't match!")
-        // }
+        
     }
 
     const [hidden, setHidden] = useState(true)

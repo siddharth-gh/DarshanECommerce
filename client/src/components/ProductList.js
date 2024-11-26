@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import styles from './ProductList.module.scss';
-import products from './sampleProducts.json'; // Import the JSON data
+import products from './sampleProducts.json';
 
 export default function ProductList(props) {
     const [productList, setProductList] = useState([]);
 
-    // Set the products state once the component is mounted
     useEffect(() => {
         setProductList(products);
     }, []);

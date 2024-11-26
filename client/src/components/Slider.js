@@ -4,7 +4,6 @@ import styles from './Slider.module.scss';
 export default function Slider() {
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Images stored in the public folder
     const slides = [
         "/slide1.jpg",
         "/slide2.jpg",
@@ -12,15 +11,15 @@ export default function Slider() {
     ];
 
     const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length); // Move forward
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
     };
 
     const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length); // Move backward
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     };
 
     useEffect(() => {
-        const interval = setInterval(nextSlide, 3000); // Auto-slide every 3 seconds
+        const interval = setInterval(nextSlide, 3000);
         return () => clearInterval(interval);
     }, []);
 

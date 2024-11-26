@@ -12,7 +12,7 @@ export default function ProductCard({ id, productImage, title, description, pric
             <div>
                 <button onClick={() => addToCart({ id, productImage, title, price })} className={styles.addToCart}>Add to Cart</button>
             </div>
-            <Link to={`/product/${id}`} className={styles.viewProduct} >View Details</Link> {/* Added Link */}
+            <Link to={`/product/${id}`} className={styles.viewProduct} >View Details</Link>
         </div>
     );
 }

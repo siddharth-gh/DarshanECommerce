@@ -30,6 +30,11 @@ export default function Navbar(props) {
         }
     };
 
+    // Toggle the visibility of the user menu
+    const toggleUserMenu = () => {
+        setIsExpanded(prevState => !prevState);
+    };
+
     return (
         <>
             <div className={styles.Navbar}>
@@ -53,33 +58,42 @@ export default function Navbar(props) {
                         onClick={handleSearch}
                     />
                 </div>
+
+                {props.name && (
+                    <span className={styles.cart} onClick={props.toggleCart}>
+                        <p>{props.cartCount}</p>
+                        <Icon icon="f7:cart" width="1.5em" height="1.5em" />
+                    </span>
+                )}
                 {props.name ? (
                     <>
-                        <p>
-                            Welcome,{' '}
-                            {props.name[0].toUpperCase() +
-                                props.name.slice(1).split(' ')[0]}{' '}
-                            👋
-                        </p>
-                        <div className={styles.login}>
-                            <button onClick={handleLogout}>Logout</button>
+                        <div className={styles.userMenu}>
+                            <p onClick={toggleUserMenu}>
+                                Hello,{' '}
+                                {props.name[0].toUpperCase() +
+                                    props.name.slice(1).split(' ')[0]}{' '}
+                                <Icon icon="bxs:down-arrow" width="1.2em" height="1.2em" style={{ color: "orange" }}></Icon>
+                            </p>
+                            {isExpanded && (
+                                <div className={styles.menu}>
+                                    <button onClick={handleLogout}>Logout</button>
+                                </div>
+                            )}
                         </div>
+
                     </>
                 ) : (
                     <div className={styles.login}>
                         <Link to="./login">Login</Link>
                     </div>
                 )}
-                {props.name ?
-                    <span className={styles.cart} onClick={props.toggleCart}>
-                        <p>{props.cartCount}</p>
-                        <Icon icon="f7:cart" width="1.5em" height="1.5em" />
-                    </span> : ""}
+
+
 
                 <div className={styles.darkmode} onClick={props.toggleTheme}>
                     {props.theme === 'light' ? (
                         <img
-                            src="./toDark.png"
+                            src="/toDark.png"
                             style={{ height: '30px', filter: 'invert(1)' }}
                             alt="themeToggler"
                             className={
@@ -90,7 +104,7 @@ export default function Navbar(props) {
                         />
                     ) : (
                         <img
-                            src="./toLight.png"
+                            src="/toLight.png"
                             style={{ height: '30px', filter: 'invert(1)' }}
                             alt="themeToggler"
                             className={

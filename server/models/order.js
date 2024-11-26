@@ -4,7 +4,7 @@ const orderSchema = new mongoose.Schema({
     cartItems: [
         {
             productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-            price: { type: String, required: true },  // e.g., "$100"
+            price: { type: String, required: true },
         },
     ],
     totalPrice: { type: Number, required: true },
@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema({
     discount: { type: Number, required: true },
     finalTotal: { type: Number, required: true },
     paymentMethod: { type: String, required: true },
-    status: { type: String, default: 'Pending' },  // Example default status
+    status: { type: String, default: 'Pending' },
     orderDate: { type: Date, default: Date.now },
 });
 

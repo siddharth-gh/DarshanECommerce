@@ -19,29 +19,27 @@ export default function CheckoutPage({ cartItems }) {
     };
 
     const totalPrice = calculateTotalPrice();
-    const gst = totalPrice * 0.18;  // Assuming 18% GST
-    const discount = totalPrice * 0.1; // Example discount of 10%
-    const finalTotal = totalPrice + gst - discount; // Final price after GST and discount
+    const gst = totalPrice * 0.18;
+    const discount = totalPrice * 0.1;
+    const finalTotal = totalPrice + gst - discount;
 
     const handlePlaceOrder = async () => {
-        // Prepare the order data to send to the backend
         const orderData = {
             cartItems,
             totalPrice,
             gst,
             discount,
             finalTotal,
-            paymentMethod,  // Payment method (Cash on Delivery in this case)
+            paymentMethod,
         };
 
         try {
-            // Make API call to create a new order
             const response = await fetch(`${url}/api/order/newOrder`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(orderData),  // Send the order data in the body
+                body: JSON.stringify(orderData),
             });
 
             if (!response.ok) {
@@ -50,15 +48,12 @@ export default function CheckoutPage({ cartItems }) {
 
             const data = await response.json();
 
-            // Show a success toast if order is placed successfully
             toast.success('Order placed successfully!', { position: "top-center" });
 
-            // Redirect user after a 2-second delay
             setTimeout(() => {
                 navigate('/');
             }, 2000);
         } catch (error) {
-            // Show an error toast if something goes wrong
             toast.error('Error placing the order: ' + error.message, { position: "top-center" });
         }
     };
@@ -120,7 +115,7 @@ export default function CheckoutPage({ cartItems }) {
                     </button>
                 </div>
             )}
-            <ToastContainer />  {/* Add ToastContainer to render toasts */}
+            <ToastContainer />
         </div>
     );
 }
