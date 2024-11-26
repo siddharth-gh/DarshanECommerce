@@ -45,6 +45,7 @@ export default function ProductPage(props) {
                 <div className={styles.info}>
                     <h3>{product.title}</h3>
                     <p>{product.description}</p>
+                    <p>Explore our extensive collection of high-quality products designed to meet a variety of needs. Whether you're looking for functionality, style, or innovation, each item is crafted with attention to detail, ensuring durability, reliability, and top-notch performance. Perfect for everyday use or special occasions, our products offer excellent value, combining modern design with practicality, all at affordable prices. Elevate your lifestyle with products that are made to last and enhance your experience.</p>
                     <span className={styles.rating}>
                         <Icon icon="material-symbols:star" width="1.2em" height="1.2em" />
                         <p>{product.rating}</p>

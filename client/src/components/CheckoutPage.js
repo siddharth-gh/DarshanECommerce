@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';  // Import ToastContainer and toast
-import 'react-toastify/dist/ReactToastify.css';  // Import the default styles for Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './CheckoutPage.module.scss';
 import { url } from "../assets"
 
-export default function CheckoutPage({ cartItems }) {
+export default function CheckoutPage({ cartItems, clearCart }) {
     const navigate = useNavigate();
-    const [paymentMethod, setPaymentMethod] = useState('cashOnDelivery'); // Only one payment method for now
+    const [paymentMethod, setPaymentMethod] = useState('cashOnDelivery');
 
-    // Calculate the total price, GST, and discounts
     const calculateTotalPrice = () => {
         let total = 0;
         cartItems.forEach(item => {
-            total += parseFloat(item.price.replace('$', '')); // Assuming price is a string like "$100"
+            total += parseFloat(item.price.replace('$', ''));
         });
         return total;
     };
@@ -49,6 +48,7 @@ export default function CheckoutPage({ cartItems }) {
             const data = await response.json();
 
             toast.success('Order placed successfully!', { position: "top-center" });
+            clearCart();
 
             setTimeout(() => {
                 navigate('/');
@@ -115,7 +115,6 @@ export default function CheckoutPage({ cartItems }) {
                     </button>
                 </div>
             )}
-            <ToastContainer />
         </div>
     );
 }

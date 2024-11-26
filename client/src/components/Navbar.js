@@ -30,7 +30,6 @@ export default function Navbar(props) {
         }
     };
 
-    // Toggle the visibility of the user menu
     const toggleUserMenu = () => {
         setIsExpanded(prevState => !prevState);
     };
@@ -116,7 +115,6 @@ export default function Navbar(props) {
                     )}
                 </div>
             </div>
-            <ToastContainer />
         </>
     );
 }

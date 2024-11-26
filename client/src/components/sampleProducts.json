@@ -288,6 +288,15 @@
         "category": "Home Appliances"
     },
     {
+        "id": 10,
+        "productImage": "./electronic3.jpg",
+        "title": "Wireless Earbuds",
+        "description": "Compact and convenient for music on the go.",
+        "price": "$79.99",
+        "rating": "4.6",
+        "category": "Electronics"
+    },
+    {
         "id": 26,
         "productImage": "./ha5.jpg",
         "title": "Air Purifier",
@@ -412,5 +421,14 @@
         "price": "$599.99",
         "rating": "4.8",
         "category": "Electronics"
+    },
+    {
+        "id": 35,
+        "productImage": "./gaming7.jpg",
+        "title": "VR Headset",
+        "description": "Step into virtual worlds with this immersive VR headset.",
+        "price": "$599.99",
+        "rating": "4.9",
+        "category": "Gaming"
     }
 ]

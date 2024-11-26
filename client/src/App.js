@@ -21,6 +21,7 @@ import CheckoutPage from './components/CheckoutPage';
 import Dashboard from './components/Dashboard';
 import Footer from './components/Footer';
 import SideCart from './components/SideCart';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
       setTheme('dark')
       localStorage.setItem('theme', 'dark')
     }
-    else {
+    else if (theme === "dark") {
       setTheme('light')
       localStorage.setItem('theme', 'light')
     }
@@ -58,7 +59,8 @@ function App() {
   };
 
   const clearCart = () => {
-    setCartItems([]);  // Clear the cart by resetting the cartItems state
+    setCartItems([]);
+    setCartCount(0);
   };
 
   const removeFromCart = (productId) => {
@@ -73,6 +75,7 @@ function App() {
   return (
     <>
       <Router>
+        <ToastContainer autoClose={1000} position='bottom-right' />
         <Navbar toggleCart={toggleCart} cartCount={cartCount} name={name} setName={setName} toggleTheme={toggleTheme} theme={theme} />
         {cartVisibility && <SideCart cartItems={cartItems} toggleCart={toggleCart} removeFromCart={removeFromCart} />}
 

@@ -12,7 +12,7 @@ export default function Electronics(props) {
     }, []);
 
     return (
-        <div className={styles.Products}>
+        <div className={`${styles.Products} ${localStorage.getItem('theme') == 'light' ? styles.light : styles.dark}`}>
             {productList.map(product => (
                 <ProductCard
                     key={product.id}

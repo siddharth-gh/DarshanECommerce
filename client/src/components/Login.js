@@ -36,18 +36,18 @@ export default function Login(props) {
             localStorage.setItem('name', user.name);
             localStorage.setItem('role', user.role);
 
-            toast.success("Success, logging you in...", { autoClose: 100 });
+            toast.success("Success, logging you in...");
 
             props.setName(user.name);
 
             if (user.role === 'admin') {
                 setTimeout(() => {
                     navigate('/dashboard');
-                }, 3000);
+                }, 1000);
             } else {
                 setTimeout(() => {
                     navigate('/');
-                }, 3000);
+                }, 1000);
             }
         }
         catch (error) {
@@ -71,7 +71,6 @@ export default function Login(props) {
 
     return (
         <div className={styles.container}>
-            <ToastContainer />
             <div className={styles.left}>
                 <div className={styles.loginBox}>
                     <div className={styles.logo}>

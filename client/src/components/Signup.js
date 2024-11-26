@@ -22,7 +22,7 @@ export default function Login(props) {
             const response = await fetch(`${url}/api/auth/createuser`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     name: nameRef.current.value,
@@ -42,7 +42,7 @@ export default function Login(props) {
             localStorage.setItem('name', user.userData.name)
             props.setName(user.userData.name);
 
-            toast.success("Account created successfully\nLoggin you in...")
+            toast.success("Account created successfully\nLoggin you in...", { autoClose: "100" })
             setTimeout(() => {
                 navigate('/');
             }, 1000);
@@ -50,7 +50,7 @@ export default function Login(props) {
         catch (error) {
             toast.error("Error signing up")
         }
-        
+
     }
 
     const [hidden, setHidden] = useState(true)
@@ -74,7 +74,6 @@ export default function Login(props) {
 
     return (
         <div className={styles.container} >
-            <ToastContainer />
             <div className={styles.left}>
                 <div className={styles.loginBox}>
 
